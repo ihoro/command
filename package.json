@@ -1,0 +1,11 @@
+{
+  "name": "command",
+  "description": "Run a command in the same context as this app",
+  "version": "0.0.1",
+  "repository": "<no-repository>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "express": "^4.13.3"
+  }
+}

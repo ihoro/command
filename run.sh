@@ -1,0 +1,3 @@
+#!/bin/sh
+npm install && \
+node app.js # ahem, like it could be something else...
