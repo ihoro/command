@@ -1,11 +1,22 @@
 var app = require('express')();
-var exec = require('child_process').exec;
+var child_process = require('child_process');
 
 app.get('/', function(req, res){
   var command = req.query.command;
+  console.log('Request with command=' + command);
+
   if (command) {
-    exec(command);
-    res.send(command + ' was invoked, I hope...');
+    var child = child_process.spawn(command);
+    var p = function(data) {
+      res.write(data.toString());
+    };
+    child.stdout.on('data', p);
+    child.stderr.on('data', p);
+    child.on('exit', function(code){
+      res.write('Exit code: ' + code + '\n');
+//      res.write('');
+      res.end();
+    });
   } else {
     res.send('command param undefined.');
   }
